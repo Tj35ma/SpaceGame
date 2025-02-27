@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54aaadd4cfba7b14e925dc65f5644954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletCtrl: {fileID: 0}
   moveSpeed: 10
   direction: {x: 0, y: 1, z: 0}
 --- !u!1 &3443662238910741053
@@ -179,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   despawnBase: {fileID: 143168581132588340}
-  bulletEnum: 0
+  bulletEnum: 1
   shooter: {fileID: 0}
 --- !u!1 &8097599988147018066
 GameObject:
@@ -192,7 +191,7 @@ GameObject:
   - component: {fileID: 2374805024670569260}
   - component: {fileID: 143168581132588340}
   m_Layer: 0
-  m_Name: BulletDespawn
+  m_Name: Despawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

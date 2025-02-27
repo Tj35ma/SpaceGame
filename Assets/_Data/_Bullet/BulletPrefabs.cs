@@ -9,9 +9,4 @@ public class BulletPrefabs : PoolPrefabs<BulletCtrl>
     {
         return this.GetPrefabByName(bulletEnum.ToString());
     }
-
-    internal BulletCtrl GetBulletByEnum(string v)
-    {
-        throw new NotImplementedException();
-    }
 }

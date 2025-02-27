@@ -14,6 +14,8 @@ public class PlayerCtrl : SGMonoBehaviour
     [SerializeField] protected PlayerShooting playerShooting;
     public PlayerShooting PlayerShooting => playerShooting;
 
+    [SerializeField] protected string bulletName = "Bullet";
+
     [SerializeField] protected BulletCtrl bullet;
     public BulletCtrl Bullet => bullet;
 
@@ -44,7 +46,7 @@ public class PlayerCtrl : SGMonoBehaviour
     protected virtual void LoadBullet()
     {
         if (this.bullet != null) return;
-        this.bullet = this.bulletPrefabs.GetBulletByEnum(this.bulletEnum.Bullet);
+        this.bullet = this.bulletPrefabs.GetPrefabByName(this.bulletName);
         Debug.Log(transform.name + ": LoadBullet", gameObject);
     }
 

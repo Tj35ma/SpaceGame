@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletFly : ObjectFly
+public class JunkFly : ObjectFly
 {
     protected override void ResetValue()
     {
         base.ResetValue();
-        this.moveSpeed = 10;
+        this.moveSpeed = 1f;
     }
 }

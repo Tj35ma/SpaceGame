@@ -15,7 +15,7 @@ public abstract class JunkAbstract : SGMonoBehaviour
     protected virtual void LoadJunkCtrl()
     {
         if (this.junkCtrl != null) return;
-        this.junkCtrl = transform.GetComponentInParent<JunkCtrl>();
+        this.junkCtrl = transform.parent.GetComponent<JunkCtrl>();
         Debug.Log(transform.name + ": Load LoadJunkCtrl", gameObject);
     }
 }

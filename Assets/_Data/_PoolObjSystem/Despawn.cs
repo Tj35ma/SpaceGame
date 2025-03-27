@@ -6,23 +6,15 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
 {
     [SerializeField] protected T parent;
     [SerializeField] protected Spawner<T> spawner;
+    [SerializeField] protected bool isDespawnByTime = true;
     [SerializeField] protected float timeLife = 2f;
     [SerializeField] protected float currentTime = 2f;
-    [SerializeField] protected bool isDespawnByTime = true;
 
-    protected override void OnDisable()
+    protected virtual void FixedUpdate()
     {
-        base.OnDisable();
-        this.StopCoroutine(this.DespawnCheckingCoroutine());
-
-
+        this.DespawnByTime();
     }
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        this.StartCoroutine(this.DespawnCheckingCoroutine());
 
-    }
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -34,37 +26,36 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
     {
         if (this.parent != null) return;
         this.parent = transform.parent.GetComponent<T>();
-        Debug.Log(transform.name + "Load Parent", gameObject);
+        Debug.Log(transform.name + ": LoadParent", gameObject);
     }
+
     protected virtual void LoadSpawner()
     {
         if (this.spawner != null) return;
         this.spawner = GameObject.FindAnyObjectByType<Spawner<T>>();
-        Debug.Log(transform.name + "LoadSpawner", gameObject);
+        Debug.Log(transform.name + ": LoadSpawner", gameObject);
     }
 
-    public override void DespawnObj()
+    protected virtual void DespawnByTime()
+    {
+        if (!this.isDespawnByTime) return;
+
+        this.currentTime -= Time.fixedDeltaTime;
+        if (this.currentTime > 0) return;
+
+        this.DoDespawn();
+        this.RebornByTime();
+    }
+
+    public override void DoDespawn()
     {
         this.spawner.Despawn(this.parent);
+
     }
 
-    protected virtual IEnumerator DespawnCheckingCoroutine()
+    public virtual void RebornByTime()
     {
-        while (true)
-        {
-            if (!this.isDespawnByTime)
-            {
-                yield return null;
-                continue;
-            }
-            this.currentTime -= Time.deltaTime;
-            if (this.currentTime <= 0)
-            {
-                this.DespawnObj();
-                this.currentTime = this.timeLife;
-            }
-
-            yield return null;
-        }
+        this.currentTime = this.timeLife;
+        Debug.Log("Current time reset to timeLife: " + this.currentTime);
     }
 }

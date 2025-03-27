@@ -72,6 +72,7 @@ public abstract class Spawner<T> : SGMonoBehaviour where T : PoolObj
             monoBehaviour.gameObject.SetActive(false);
         }
         this.AddObjectToPool(obj);
+        
 
     }
 

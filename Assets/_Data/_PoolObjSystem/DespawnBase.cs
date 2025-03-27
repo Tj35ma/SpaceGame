@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class DespawnBase : SGMonoBehaviour
 {
-    public abstract void DespawnObj();
+    public abstract void DoDespawn();
 }
+    

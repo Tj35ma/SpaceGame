@@ -13,7 +13,7 @@ public abstract class SpawnPoints : SGMonoBehaviour
         this.LoadPoints();
     }
 
-    protected virtual void LoadPoints()
+    protected virtual void LoadPoints() 
     {
         if (this.points.Count > 0) return;
         foreach (Transform point in transform)

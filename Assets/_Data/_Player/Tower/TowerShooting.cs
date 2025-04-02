@@ -36,9 +36,10 @@ public class TowerShooting : TowerAbtrast
     protected virtual void Looking()
     {
         if (this.target == null) return;
+        
         Vector3 direction = this.target.TowerTargetable.transform.position - this.towerCtrl.Sprite.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        this.towerCtrl.Sprite.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+        this.towerCtrl.Sprite.rotation = Quaternion.Euler(new Vector3(0, 0,angle - 90));
     }
 
     protected virtual void Shooting()
@@ -47,7 +48,7 @@ public class TowerShooting : TowerAbtrast
         if (this.target == null) return;
 
         FirePoint firePoint = this.GetFirePoint();
-        BulletCtrl newBullet = this.towerCtrl.BulletSpawner.Spawn(this.towerCtrl.Bullet, firePoint.transform.position);
+        BulletCtrl newBullet = this.towerCtrl.BulletSpawner.Spawn(this.towerCtrl.Bullet, firePoint.transform.position);        
 
         newBullet.transform.rotation = this.towerCtrl.Sprite.rotation;
         newBullet.gameObject.SetActive(true);

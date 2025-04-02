@@ -14,6 +14,10 @@ public class TowerCtrl : SGMonoBehaviour
     public BulletSpawner BulletSpawner => bulletSpawner;
 
 
+    [SerializeField] protected BulletPrefabs bulletPrefabs;
+    public BulletPrefabs BulletPrefabs => bulletPrefabs;
+
+
     [SerializeField] protected string bulletName = "Bullet";
 
 
@@ -23,10 +27,6 @@ public class TowerCtrl : SGMonoBehaviour
 
     [SerializeField] protected List<FirePoint> firePoints = new();
     public List<FirePoint> FirePoint => firePoints;
-
-
-    [SerializeField] protected BulletPrefabs bulletPrefabs;
-    public BulletPrefabs BulletPrefabs => bulletPrefabs;
 
 
     [SerializeField] protected TowerShooting towerShooting;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class JunkCtrl : PoolObj
 {
+    [SerializeField] protected EffectEnum effectEnum = EffectEnum.Smoke;
+
     [SerializeField] protected JunkEnum junkEnum;
     public override string GetName() => this.junkEnum.ToString();
 
@@ -20,6 +22,14 @@ public class JunkCtrl : PoolObj
     [SerializeField] protected JunkDespawn junkDespawn;
     public JunkDespawn JunkDespawn => junkDespawn;
 
+    [SerializeField] protected EffectManager effectManager;
+    public EffectManager EffectManager => effectManager;
+
+    [SerializeField] protected EffectCtrl effectCtrl;
+    public EffectCtrl EffectCtrl => effectCtrl;
+
+
+
     protected override void OnDisable()
     {
         base.OnDisable();       
@@ -32,6 +42,8 @@ public class JunkCtrl : PoolObj
         this.LoadJunkDamageReceiver();
         this.LoadJunkDespawn();
         this.LoadTowerTargetable();
+        this.LoadEffectManager();
+        this.LoadEffect();
     }
 
     protected virtual void LoadSprite()
@@ -62,4 +74,18 @@ public class JunkCtrl : PoolObj
         Debug.Log(transform.name + ": LoadJunkDamageReceiver", gameObject);
     }
 
+    protected virtual void LoadEffectManager()
+    {
+        if (this.effectManager != null) return;
+        this.effectManager = FindObjectOfType<EffectManager>();
+        Debug.Log(transform.name + ": LoadEffectManager", gameObject);
+    }
+    
+
+    protected virtual void LoadEffect()
+    {
+        if (this.effectCtrl != null) return;
+        this.effectCtrl = this.effectManager.EffectPrefabs.GetEffectByEnum(this.effectEnum);
+        Debug.Log(transform.name + ": LoadEffect", gameObject);
+    }
 }

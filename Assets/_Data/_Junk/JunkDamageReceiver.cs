@@ -32,14 +32,21 @@ public class JunkDamageReceiver : DamageReceiver
         this.junkCtrl = transform.parent.GetComponent<JunkCtrl>();
         Debug.Log(transform.name + ": LoadEnemyCtrl", gameObject);
     }
+    
 
     protected override void OnDead()
     {
         base.OnDead();
-        //this.junkCtrl.Animator.SetBool("isDead", this.isDead);
+        this.OnDeadFX();
         this.circleCollider.enabled = false;
         this.RewardOnDead();
         Invoke(nameof(this.Disappear), this.disappearTime);
+    }
+
+    protected virtual void OnDeadFX()
+    {
+        EffectCtrl smokeOnDead = this.junkCtrl.EffectManager.EffectSpawner.Spawn(this.junkCtrl.EffectCtrl, transform.position);        
+        smokeOnDead.gameObject.SetActive(true);
     }
 
     protected override void OnHurt()

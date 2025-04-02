@@ -110,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   rigid: {fileID: 811061409023474061}
-  bulletCtrl: {fileID: 1808506524576445961}
+  bulletCtrl: {fileID: 0}
   circleCollider: {fileID: 8858312344709905631}
 --- !u!1 &2527720008558067341
 GameObject:
@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  direction: {x: 0, y: 1, z: 0}
 --- !u!1 &3443662238910741053
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,8 +291,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   despawnBase: {fileID: 143168581132588340}
+  effectEnum: 2
   bulletEnum: 1
   shooter: {fileID: 0}
+  effectManager: {fileID: 0}
+  effectCtrl: {fileID: 0}
 --- !u!1 &8097599988147018066
 GameObject:
   m_ObjectHideFlags: 0

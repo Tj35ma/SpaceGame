@@ -9,11 +9,13 @@ public class BulletDamageSender : DamageSender
     [SerializeField] protected BulletCtrl bulletCtrl;
     [SerializeField] protected CircleCollider2D circleCollider;
 
+    
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadCircleCollider2D();
-        this.LoadBulletCtrl();
+        this.LoadBulletCtrl();        
     }
 
     protected virtual void LoadCircleCollider2D()
@@ -25,6 +27,8 @@ public class BulletDamageSender : DamageSender
         Debug.Log(transform.name + ": LoadCircleCollider2D", gameObject);
     }
 
+    
+
     protected virtual void LoadBulletCtrl()
     {
         if (bulletCtrl != null) return;
@@ -34,6 +38,14 @@ public class BulletDamageSender : DamageSender
     protected override void Send(DamageReceiver damageReceiver)
     {
         base.Send(damageReceiver);
+        this.CreateImpactFX();
         this.bulletCtrl.DespawnBase.DoDespawn();
+    }
+
+    protected virtual void CreateImpactFX()
+    {
+        EffectCtrl impactFX = this.bulletCtrl.EffectManager.EffectSpawner.Spawn(this.bulletCtrl.EffectCtrl, transform.position);
+        impactFX.transform.rotation = transform.rotation;
+        impactFX.gameObject.SetActive(true);
     }
 }
